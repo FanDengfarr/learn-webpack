@@ -1,0 +1,67 @@
+
+.main {
+    height: 100%;
+    background-color: aliceblue;
+    overflow: auto;
+    .header {
+        position: relative;
+        width: 100%;
+        padding-bottom: 52%;
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url(./images/hongqi.png);
+        z-index: 5;
+
+        .background {
+            position: absolute;
+            width: 90%;
+            top:75%;
+            padding-bottom: 120%;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-image: url(./images/wanzhengbeijing.png);
+            z-index: 10;
+            left: 5%;
+            background-position: center;
+            > p {
+                position: absolute;
+                top: 30%;
+                left: 10%;
+                width: 85%;
+                letter-spacing: 5px;
+                text-indent: 40px;
+                font-size: 15px;
+            }
+            .arrow {
+                background-image: url(../blessing/images/rightjiantou.png);
+                width: 20px;
+                height: 20px;
+                top: 42%;
+                left: 92%;
+                background-size: cover;
+                position: absolute;
+                background-repeat: no-repeat;
+            }
+        }
+        
+    .backgroundBottom {
+        position: absolute;
+        width: 90%;
+        top:75%;
+        padding-bottom: 120%;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-image: url(./images/beijing.png);
+        z-index: 5;
+        left: 5%;
+        background-position: center;
+        transform:rotate(-4deg);
+        -ms-transform:rotate(-4deg); /* Internet Explorer */
+        -moz-transform:rotate(-4deg); /* Firefox */
+        -webkit-transform:rotate(-4deg); /* Safari 和 Chrome */
+        -o-transform:rotate(-4deg); /* Opera */
+        }
+    }
+    
+}
