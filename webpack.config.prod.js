@@ -3,7 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack')
-// process.env.NODE_ENV = 'development'
+// process.env.NODE_ENV = 'production'
 const portfinder = require('portfinder');
 const TerserPlugin  = require('terser-webpack-plugin')
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
@@ -110,7 +110,7 @@ const config = {
 		// new ExtractTextPlugin("js/style.css"),
 		// new webpack.DefinePlugin({
 		// 	'process.env': {
-		// 		NODE_ENV: "development",
+		// 		NODE_ENV: "production",
 		// 	}
 		// }),
 		// new ExtractTextPlugin({
@@ -128,42 +128,18 @@ const config = {
 		}),
 	]
 };
-	portfinder.getPort(function(err, port) {
-			config.devtool = '#cheap-module-eval-source-map',
-			config.devServer = {
-				clientLogLevel: 'none',
-				port: port,
-				host: '127.0.0.1',
-				overlay: {
-					errors: true
-				},
-				noInfo: true,
-				quiet: true,
-				compress:true,
-				open:true,  //每次都打开一个网页
-				hot: true //只渲染一个组件
-			}
-		// config.plugins.push(
-		// 	new webpack.HotModuleReplacementPlugin(),
-		// )
-		// config.plugins.push(new BundleAnalyzerPlugin({
-		//     analyzerMode: 'disabled',
-		//     generateStatsFile: true,
-		//     statsOptions: { source: false }
-		// }))
-		config.plugins.push(new FriendlyErrorsWebpackPlugin({
-			 compilationSuccessInfo: {
-			        messages: [`You application is running here http://0.0.0.0:${port}`]
-			      }
-		}
-		))
-		config.plugins.push(
-			new ProgressBarPlugin(),
-		)
-		const compiler = webpack(config)
-		const server = new WebpackDevServer(compiler, config.devServer)
-		server.listen(port)
-	});
+config.plugins.push(new TerserPlugin())
+config.plugins.push(new CleanWebpackPlugin())
+const compiler = webpack(config)
+
+compiler.run((_, stats) => {
+  console.log(
+    stats.toString({
+      chunks: false,
+      colors: true
+    })
+  )
+})
 
 
 module.exports = config;
